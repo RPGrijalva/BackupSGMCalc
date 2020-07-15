@@ -2,7 +2,10 @@
 function calculate() {
   let current = document.getElementById('movecurrent').innerHTML;
   let desired = document.getElementById('movedesired').innerHTML;
-
+  
+function addCommas(intNum) {
+    return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  }
 
   let multi;
 
@@ -21,8 +24,11 @@ function calculate() {
   let intCurrent = parseInt(current);
   let intDesired = parseInt(desired);
 
+  let total = ((moves[intDesired] - moves[intCurrent]) * multi);
+  total.toString();
+
   if (intCurrent < intDesired) {
-      document.getElementById('move-calculate').innerHTML = 'This item needs ' + (moves[intDesired] - moves[intCurrent])*multi + ' coins';
+      document.getElementById('move-calculate').innerHTML = 'This item needs ' + addCommas(total) + ' coins';
   } else {
       document.getElementById('move-calculate').innerHTML = 'This move has met its goal';
   }
