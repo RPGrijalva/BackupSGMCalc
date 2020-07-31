@@ -11,8 +11,8 @@
         </header>
         <nav>
             <ul>
-                <li><a href="#moves">Moves / Catalysts</a></li>
-                <li><a href="#fighters">Fighters(Coming soon!)</a></li>
+                <!--<li>Moves / Catalysts</li>-->
+                <li><a href="https://docs.google.com/spreadsheets/d/1his-ztPswmUIKaeAeO3a4pmihLn7LsssLTb-6Z3i350/edit" target="_blank">Click for fighters (Spreadsheet only, calc coming soon!)</a></li>
             </ul>
         </nav>
         <main>
@@ -21,9 +21,9 @@
                 <form id="move-upgrades">
                     <h3>Item rarity</h2>
                         <div id="move-upgrades-radio">
-                            <input type="radio" name="move-rarity" value="bronze" checked/> Bronze <br />
-                            <input type="radio" name="move-rarity" value="silver" /> Silver <br />
-                            <input type="radio" name="move-rarity" value="gold" /> Gold  <br /> <br />
+                            <input type="radio" name="move-rarity" class="move-radio" value="bronze" checked /> Bronze  <br />
+                            <input type="radio" name="move-rarity" class="move-radio" value="silver" /> Silver <br />
+                            <input type="radio" name="move-rarity" class="move-radio" value="gold" /> Gold  <br /> <br />
                         </div>
                         <div id="current-move-level">
                             <p>Catalysts cap at level 11, but are otherwise the same cost as moves.</p>
@@ -34,14 +34,18 @@
                                 <input type="range" id="move-desired-level" min="1" max = "15" step = "1" value="1" oninput='document.getElementById("movedesired").innerHTML=this.value'/>
                                 <label for='move-desired-level' id='movedesired'>1</label><br />
                         </div>
-                    <div class='button' id='move-calculate' onclick='calculate()'>Calculate cost</div>
+                    <div class='button' id='move-calculate' onclick='calculate()'>Calcualte cost</div>
                 </form>
+                <hr />
+                <section id="past-moves">
+                    <div id="past-items">Previous move costs will appear here.</div>
+                    <div id="individual-items"></div>
+                </section>
             </section>
-            <hr />
+
             <section id="fighters">
                 <h2>Fighters</h2>
                 <div id='comingsoon'>Coming soon!</div>
-                <!--
                 <form id="move-upgrades"> 
                     <h3>Fighter rarity</h3>
                         <div id="fighter-upgrades-radio">
@@ -66,40 +70,40 @@
                         <tbody>
                             <tr>
                                 <td><h3>Tier 1</h3></td>
-                                <td><input type='number' id='ability1' min='0' max='1' value='0' /></td>
-                                <td><input type='number' id='atk1' min='0' max='1' value='0' /></td>
-                                <td><input type='number' id='move1' min='0' max='1' value='0' /></td>
-                                <td><input type='number' id='hp1' min='0' max='1' value='0' /></td>
-                                <td><input type='number' id='nrg1' min='0' max='1' value='0' /></td>
+                                <td><input type='number' class='abil' id='ability1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='atk1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='move' id='move1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='hp1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='nrg1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
                             </tr>
                             <tr>
                                 <td><h3>Tier 2</h3></td>
-                                <td><input type='number' id='ability2' min='0' max='3' value='0' /></td>
-                                <td><input type='number' id='atk2' min='0' max='3' value='0' /></td>
-                                <td><input type='number' id='move2' min='0' max='3' value='0' /></td>
-                                <td><input type='number' id='hp2' min='0' max='3' value='0' /></td>
-                                <td><input type='number' id='nrg2' min='0' max='3' value='0' /></td>
+                                <td><input type='number' class='abil' id='ability2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='atk2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='move' id='move2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='hp2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='nrg2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
                             </tr>
                             <tr>
                                 <td><h3>Tier 3</h3></td>
-                                <td><input type='number' id='ability3' min='0' max='3' value='0' /></td>
-                                <td><input type='number' id='atk3' min='0' max='5' value='0' /></td>
-                                <td><input type='number' id='move3' min='0' max='5' value='0' /></td>
-                                <td><input type='number' id='hp3' min='0' max='5' value='0' /></td>
-                                <td><input type='number' id='nrg3' min='0' max='5' value='0' /></td>
+                                <td><input type='number' class='abil' id='ability3' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='atk3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='move' id='move3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='hp3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='nrg3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
                             </tr>
                             <tr>
                                 <td><h3>Tier 4</h3></td>
-                                <td><input type='number' id='ability4' min='0' max='3' value='0' /></td>
-                                <td><input type='number' id='atk4' min='0' max='5' value='0' /></td>
-                                <td><input type='number' id='move4' min='0' max='5' value='0' /></td>
-                                <td><input type='number' id='hp4' min='0' max='5' value='0' /></td>
-                                <td><input type='number' id='nrg4' min='0' max='5' value='0' /></td>
+                                <td><input type='number' class='abil' id='ability4' min='0' max='3' value='0' onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='atk4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
+                                <td><input type='number' class='move' id='move4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='hp4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
+                                <td><input type='number' class='oth' id='nrg4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
                             </tr>
                         </tbody>
                     </table>
                     <div class='button' id='fighter-calculate' onclick='fightCalculate()'>Calcualte cost</div>
-                </form>-->
+                </form>
             </section>
         </main>
         <script src="./script.jsx"></script>
