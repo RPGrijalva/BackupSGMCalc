@@ -1,9 +1,13 @@
 
+let figherDisplay = false;
+let moveDisplay = true;
+
+//calculate cost of moves
 function calculate() {
   let current = document.getElementById('movecurrent').innerHTML;
   let desired = document.getElementById('movedesired').innerHTML;
-  
-function addCommas(intNum) {
+
+  function addCommas(intNum) {
     return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
   }
 
@@ -25,20 +29,77 @@ function addCommas(intNum) {
   let intDesired = parseInt(desired);
 
   let total = ((moves[intDesired] - moves[intCurrent]) * multi);
-  total.toString();
 
   if (intCurrent < intDesired) {
-      document.getElementById('move-calculate').innerHTML = 'This item needs ' + addCommas(total) + ' coins';
+      document.getElementById('move-calculate').innerHTML = 'This item needs ' + addCommas(total.toString()) + ' coins';
+      pastMoves.unshift(total);
   } else {
       document.getElementById('move-calculate').innerHTML = 'This move has met its goal';
   }
+
+  document.getElementById('past-items').innerHTML = 'You will need ' + addCommas(pastMoves.reduce((total, item) => total + item)) + ' coins to finish your investments.';
+
+  document.getElementById('individual-items').innerHTML = 'Past moves: <br/>' + (pastMoves.map((item) => addCommas(item.toString())).join("<br/>") + '<br/>');
 }
 
 function fightCalculate() {
+  function addCommas(intNum) {
+    return (intNum + '').replace(/(\d)(?=(\d{3})+$)/g, '$1,');
+  };
+
+  let multi;
+
+  switch(document.querySelector('input[name="fighter-rarity"]:checked').value) {
+    case 'bronze':
+      multi = 1;
+      break;
+    case 'silver':
+      multi = 2;
+      break;
+    case 'gold':
+      multi = 5;
+      break;
+    case 'diamond':
+      multi = 10;
+      break;
+  };
+
   
 }
 
-//store cost of different things
+
+
+
+let fight = document.getElementById('fighters');
+let move = document.getElementById('moves');
+//show moves
+function showMoves() {  
+    if (fight.style.display === 'none'){
+      
+    } else {
+      move.style.display = 'block';
+      fight.style.display = 'none';
+    }
+};
+
+//change page to fighters display
+function showFighers() {
+  if (move.style.display === 'none'){
+    
+  } else {
+    fight.style.display = 'block';
+    move.style.display = 'none';
+  }
+};
+
+//force input limits
+function levelvalues() {
+  if (this.value > this.max) {
+    this.value = this.max;
+  }
+};
+
+//store cost of moves and coins
 let moves = [
     0,
     0,
@@ -101,3 +162,5 @@ let fighterPoints = {
     4
   ]
 }
+
+let pastMoves = [];
