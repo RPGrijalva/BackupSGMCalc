@@ -1,10 +1,46 @@
 * {
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, helvetica;
     background-color: chocolate;
+}
+
+#move-upgrades-radio {
+    position: absolute;
+    left: 47.5%;
+    text-align: left;
+    font-size: 1.3em;
+    height: 2em;
+    margin: 0 auto;
+}
+
+#current-move-level{
+    margin-top: 100px;
+
+}
+
+#current-move-level input[type="number"]{
+    border: none;
+    background: transparent;
+    color: #000;
+    font-size: 20px;
+    width: 2em;
+
+}
+
+input[type="range"]{
+    width: 200px;
+}
+
+#fighters {
+    display: none;
+}
+
+input[name="move-rarity"] {
+    display: inline-block;
 }
 
 header {
@@ -14,7 +50,7 @@ header {
 
 nav {
     width: 100%;
-    background-color: darkgoldenrod;
+    background-color: #b8860b9c;
 }
 
 nav ul {
@@ -29,9 +65,13 @@ nav li {
     padding: 0 9%;
 }
 
-nav li a {
+nav li:hover {
+    cursor: pointer;
+}
+
+nav li a{
     text-decoration: none;
-    color: black;
+    color: inherit;
 }
 
 h2 {
@@ -59,7 +99,7 @@ section div{
     border: 3px solid black;
     position: relative;
     margin: 20px 40%;
-    background-color: burlywood;
+    background-color: #deb8878a;
     border-radius: 10px;
 }
 
@@ -80,5 +120,5 @@ td {
 }
 
 table input {
-    width: 25px;
+    width: 35px;
 }
