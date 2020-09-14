@@ -3,7 +3,7 @@
 <html>
     <head>
         <title >SGM investment calculator</title>
-        <link type="text/css" href="style.css" rel="stylesheet" />
+        <link type="text/css" href="style.css" rel="stylesheet" >
     </head>
     <body>
         <header>
@@ -11,8 +11,8 @@
         </header>
         <nav>
             <ul>
-                <!--<li>Moves / Catalysts</li>-->
-                <li><a href="https://docs.google.com/spreadsheets/d/1his-ztPswmUIKaeAeO3a4pmihLn7LsssLTb-6Z3i350/edit" target="_blank">Click for fighters (Spreadsheet only, calc coming soon!)</a></li>
+                <li onclick='showMoves()'>Moves / Catalysts</li>
+                <li onclick='showFighters()'>Fighters</li>
             </ul>
         </nav>
         <main>
@@ -28,13 +28,17 @@
                         <div id="current-move-level">
                             <p>Catalysts cap at level 11, but are otherwise the same cost as moves.</p>
                             <h3>Current level:</h3>
-                                <input type="range" id="move-current-level" min="1" max = "15" step = "1" value="1" oninput='document.getElementById("movecurrent").innerHTML = this.value'>
-                                <label for='move-current-level' id='movecurrent'>1</label><br />
+                                <input type="range" id="move-current-level" min="1" max = "15" step = "1" value="1" oninput='document.getElementById("movecurrent").value=this.value' />
+                                <label for='move-current-level'>
+                                    <input id='movecurrent' type='number' value='1' min='1' max='15' oninput="document.getElementById('move-current-level').value=this.value" onchange="setValue(this)"/>
+                                </label><br />
                             <h3>Desired level:</h3>
-                                <input type="range" id="move-desired-level" min="1" max = "15" step = "1" value="1" oninput='document.getElementById("movedesired").innerHTML=this.value'/>
-                                <label for='move-desired-level' id='movedesired'>1</label><br />
+                                <input type="range" id="move-desired-level" min="1" max = "15" step = "1" value="1" oninput='document.getElementById("movedesired").value=this.value' />
+                                <label for='move-desired-level'>
+                                    <input id='movedesired' type='number' value='1' min='1' max='15' oninput="document.getElementById('move-desired-level').value=this.value" onchange="setValue(this)"/>
+                                </label><br />
                         </div>
-                    <div class='button' id='move-calculate' onclick='calculate()'>Calcualte cost</div>
+                    <div class='button' id='move-calculate' onclick='calculate()'>Calculate cost</div>
                 </form>
                 <hr />
                 <section id="past-moves">
@@ -45,16 +49,15 @@
 
             <section id="fighters">
                 <h2>Fighters</h2>
-                <div id='comingsoon'>Coming soon!</div>
                 <form id="move-upgrades"> 
                     <h3>Fighter rarity</h3>
                         <div id="fighter-upgrades-radio">
-                            <input type="radio" name="fighter-rarity" value="bronze" checked /> Bronze <br />
-                            <input type="radio" name="fighter-rarity" value="silver" /> Silver <br />
-                            <input type="radio" name="fighter-rarity" value="gold" /> Gold  <br />
-                            <input type="radio" name="fighter-rarity" value="diamond" /> Diamond  <br />
+                            <input type="radio" name="fighter-rarity" value="bronze" onchange="fighterCost();changeTier();" checked /> Bronze <br />
+                            <input type="radio" name="fighter-rarity" value="silver" onchange="fighterCost();changeTier()"/> Silver <br />
+                            <input type="radio" name="fighter-rarity" value="gold" onchange="fighterCost();changeTier()"/> Gold  <br />
+                            <input type="radio" name="fighter-rarity" value="diamond" onchange="fighterCost();changeTier()"/> Diamond  <br />
                             <br />
-                            <input type='checkbox' name='shiny' value='shiny' /> Shiny
+                            <input type='checkbox' name='shiny' value='shiny' id='shiny' onchange='fighterCost()'/> Shiny
                         </div>
                     <table>
                         <thead>
@@ -69,43 +72,184 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><h3>Tier 1</h3></td>
-                                <td><input type='number' class='abil' id='ability1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='atk1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='move' id='move1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='hp1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='nrg1' min='0' max='1' value='0'  onchange="levelvalues()"/></td>
-                            </tr>
-                            <tr>
-                                <td><h3>Tier 2</h3></td>
-                                <td><input type='number' class='abil' id='ability2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='atk2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='move' id='move2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='hp2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='nrg2' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
+                                <td id="t4"><h3>Tier 4</h3></td>
+                                <td>
+                                    <div class="createTriangle1 triangle" id="triangle1">
+                                        
+                                    </div>
+                                    <input type='checkbox' class='ability3' id='ability4' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability3' id='ability4' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability3' id='ability4' onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <div class="createTriangle2 triangle"></div>
+
+                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <div class="createTriangle2 triangle"></div>
+
+                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <div class="createTriangle2 triangle"></div>
+
+                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <div class="createTriangle2 triangle"></div>
+
+                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td><h3>Tier 3</h3></td>
-                                <td><input type='number' class='abil' id='ability3' min='0' max='3' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='atk3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='move' id='move3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='hp3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='nrg3' min='0' max='5' value='0'  onchange="levelvalues()"/></td>
+                                <td id="t3">
+                                    <input type='checkbox' class='ability2' id='ability3' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability2' id='ability3' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability2' id='ability3' onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
+                                </td>
                             </tr>
                             <tr>
-                                <td><h3>Tier 4</h3></td>
-                                <td><input type='number' class='abil' id='ability4' min='0' max='3' value='0' onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='atk4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
-                                <td><input type='number' class='move' id='move4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='hp4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
-                                <td><input type='number' class='oth' id='nrg4' min='0' max='5' value='0' onchange="levelvalues()"/></td>
+                                <td id="t2"><h3>Tier 2</h3></td>
+                                <td>
+                                    <input type='checkbox' class='ability1' id='ability2' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability1' id='ability2' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability1' id='ability2' onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='other1'   id='atk2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1'   id='atk2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1'   id='atk2'     onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='move1'    id='move2'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move1'    id='move2'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move1'    id='move2'    onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='other1'   id='hp2'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1'   id='hp2'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1'   id='hp2'      onchange="fighterCost()"/>
+                                </td>
+
+                                <td>
+                                    <input type='checkbox' class='other1'   id='nrg2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1'   id='nrg2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1'   id='nrg2'     onchange="fighterCost()"/>
+                                </td>
+
+                            </tr>
+                            
+                            <tr>
+                                <td id="t1"><h3>Tier 1</h3></td>
+
+                                <td><input type='checkbox' class='ability0' id='ability1' onchange="fighterCost()"/></td>
+
+                                <td><input type='checkbox' class='other0'   id='ability1' onchange="fighterCost()"/></td>
+
+                                <td><input type='checkbox' class='move0'    id='ability1' onchange="fighterCost()"/></td>
+
+                                <td><input type='checkbox' class='other0'   id='ability1' onchange="fighterCost()"/></td>
+
+                                <td><input type='checkbox' class='other0'   id='ability1' onchange="fighterCost()"/></td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class='button' id='fighter-calculate' onclick='fightCalculate()'>Calcualte cost</div>
+                    <div id='marquee-info'>
+                        <input type='checkbox' class='marquee' id='marquee' onchange="fighterCost()"/> Unlock Marquee 
+                        <br />
+                        Additional MA levels:
+                        <select name='marqueeLevels' id='maLevels' onchange="fighterCost()"> 
+                            <option value='0'>0</option>
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                            <option value='3'>3</option>
+                            <option value='4'>4</option>
+                            <option value='5'>5</option>
+                            <option value='6'>6</option>
+                            <option value='7'>7</option>
+                            <option value='8'>8</option>
+                            <option value='9'>9</option>
+                            <option value='10'>10</option>
+                        </select>
+                    </div>
+                    <div id='current-cost' style="padding-top:50px; font-size: 25px">Check the nodes you want to invest</div>
+                </form>
+                <hr />
+                <form id='grind-exp'>
+                    <div id='exp-head'><h2>Find needed EXP</h2>
+                        <p>Fighter rarity and shininess is the one you selected in the above section.</p>
+                        <p>level start: 
+                            <br />
+                            <input type="range" id='level-start' min='1' max='30' value='1' oninput='document.getElementById("start-input").value=this.value' onchange="setValue(this)"/> 
+                            <input type='number' id='start-input' min='1' max='30' value='1'oninput='document.getElementById("level-start").value=this.value' onchange="setValue(this)"/>
+                        </p>
+                        <p>level goal:
+                            <br />
+                            <input type="range" id='level-max' min='1' max='30' value='1' oninput='document.getElementById("max-input").value=this.value' onchange="setValue(this)"/> 
+                            <input type='number' id='max-input' min='1' max='30' value='1' oninput='document.getElementById("level-max").value=this.value' onchange="setValue(this)"/>
+                        </p>
+
+                        <div class='button' id='exp-calculate' onclick='findEXP()'>Calculate cost</div>
+                    </div>
                 </form>
             </section>
         </main>
-        <script src="./script.jsx"></script>
+        <script src="./script.js"></script>
     </body>
 </html>
