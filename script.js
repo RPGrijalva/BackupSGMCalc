@@ -159,6 +159,47 @@ function findEXP() {
   document.getElementById('exp-calculate').innerHTML = `You will need ${addCommas(result)} exp for this fighter`
 }
 
+function isChecked(thing) {
+  return thing.checked;
+}
+
+function selectAll(tree) {
+  let ability = document.querySelectorAll('.ability');
+  let attack = document.querySelectorAll('.attack');
+  let moves = document.querySelectorAll('.moves');
+  let health = document.querySelectorAll('.health');
+  let energy = document.querySelectorAll('.energy');
+  let all = document.querySelectorAll('.ability, .attack, .moves, .health, .energy');
+
+  if (tree === 'ability') tree = ability;
+  if (tree === 'attack') tree = attack;
+  if (tree === 'moves') tree = moves;
+  if (tree === 'health') tree = health;
+  if (tree === 'energy') tree = energy;
+  if (tree === 'all')  tree = all;
+
+  let num = tree.length; 
+  let checked = 0;
+
+  for (let skill in tree) {
+    if (tree[skill].checked) {
+      checked += 1;
+    }
+  }
+
+  
+  if (checked >= tree.length) {
+    for (let i = 0; i < tree.length; i++) {
+      tree[i].checked = false;
+    }
+  } else {
+      for (let i = 0; i < tree.length; i++) {
+      tree[i].checked = true;
+    }
+  }
+  fighterCost();
+}
+
 let multi;
 //calc fighter cost
 function fighterCost() {
