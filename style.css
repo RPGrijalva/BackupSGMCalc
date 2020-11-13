@@ -10,12 +10,33 @@ body {
 }
 
 #move-upgrades-radio, #fighter-upgrades-radio {
-    position: absolute;
-    left: 47.5%;
-    text-align: left;
+    /* position: relative; */
+    text-align: center;
     font-size: 1.3em;
     height: 2em;
-    margin: 0 auto;
+    /* margin: auto; */
+}
+
+.fill-all {
+    position: absolute;
+
+}
+
+/* @media only screen and (max-width: 900px) {
+    #move-upgrades-radio, #fighter-upgrades-radio {
+        left: 46%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    #move-upgrades-radio, #fighter-upgrades-radio {
+        left: 43%;
+    }
+} */
+
+#radio-divs {
+    display: inline-block;
+    text-align: left;
 }
 
 #current-move-level{
