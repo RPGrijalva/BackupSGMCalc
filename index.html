@@ -21,9 +21,11 @@
                 <form id="move-upgrades">
                     <h3>Item rarity</h2>
                         <div id="move-upgrades-radio">
-                            <input type="radio" name="move-rarity" class="move-radio" value="bronze" checked /> Bronze  <br />
-                            <input type="radio" name="move-rarity" class="move-radio" value="silver" /> Silver <br />
-                            <input type="radio" name="move-rarity" class="move-radio" value="gold" /> Gold  <br /> <br />
+                            <div id="radio-divs">
+                                <input type="radio" name="move-rarity" class="move-radio" value="bronze" checked /> Bronze  <br />
+                                <input type="radio" name="move-rarity" class="move-radio" value="silver" /> Silver <br />
+                                <input type="radio" name="move-rarity" class="move-radio" value="gold" /> Gold  <br /> <br />
+                            </div>
                         </div>
                         <div id="current-move-level">
                             <p>Catalysts cap at level 11, but are otherwise the same cost as moves.</p>
@@ -52,22 +54,24 @@
                 <form id="move-upgrades"> 
                     <h3>Fighter rarity</h3>
                         <div id="fighter-upgrades-radio">
-                            <input type="radio" name="fighter-rarity" value="bronze" onchange="fighterCost();changeTier();" checked /> Bronze <br />
-                            <input type="radio" name="fighter-rarity" value="silver" onchange="fighterCost();changeTier()"/> Silver <br />
-                            <input type="radio" name="fighter-rarity" value="gold" onchange="fighterCost();changeTier()"/> Gold  <br />
-                            <input type="radio" name="fighter-rarity" value="diamond" onchange="fighterCost();changeTier()"/> Diamond  <br />
-                            <br />
-                            <input type='checkbox' name='shiny' value='shiny' id='shiny' onchange='fighterCost()'/> Shiny
+                            <div id="radio-divs">
+                                <input type="radio" name="fighter-rarity" value="bronze" onchange="fighterCost();changeTier();" checked /> Bronze <br />
+                                <input type="radio" name="fighter-rarity" value="silver" onchange="fighterCost();changeTier()"/> Silver <br />
+                                <input type="radio" name="fighter-rarity" value="gold" onchange="fighterCost();changeTier()"/> Gold  <br />
+                                <input type="radio" name="fighter-rarity" value="diamond" onchange="fighterCost();changeTier()"/> Diamond  <br />
+                                <br />
+                                <input type='checkbox' name='shiny' value='shiny' id='shiny' onchange='fighterCost()'/> Shiny
+                            </div>
                         </div>
                     <table>
                         <thead>
                             <tr>
-                                <td></td>
-                                <td><h3>Ability</h3></td>
-                                <td><h3>Attack</h3></td>
-                                <td><h3>Moves</h3></td>
-                                <td><h3>Health</h3></td>
-                                <td><h3>Energy</h3></td>
+                                <td><a onclick="selectAll('all')" >Skill Tree</a></td>
+                                <td><h3 class="skill-tree-header"><a onclick="selectAll('ability')">Ability</a></h3></td>
+                                <td><h3><a onclick="selectAll('attack')">Attack</a></h3></td>
+                                <td><h3><a onclick="selectAll('moves')">Moves</a></h3></td>
+                                <td><h3><a onclick="selectAll('health')">Health</a></h3></td>
+                                <td><h3><a onclick="selectAll('energy')">Energy</a></h3></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -77,120 +81,120 @@
                                     <div class="createTriangle1 triangle" id="triangle1">
                                         
                                     </div>
-                                    <input type='checkbox' class='ability3' id='ability4' onchange="fighterCost()"/>
-                                    <input type='checkbox' class='ability3' id='ability4' onchange="fighterCost()"/>
-                                    <input type='checkbox' class='ability3' id='ability4' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability3 ability' id='ability4' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability3 ability' id='ability4' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability3 ability' id='ability4' onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
                                     <div class="createTriangle2 triangle"></div>
 
-                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 attack'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 attack'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 attack'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 attack'   id='atk4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 attack'   id='atk4'     onchange="fighterCost()"/>
+                                </td>
+ 
+                                <td>
+                                    <div class="createTriangle2 triangle"></div>
+
+                                    <input type='checkbox' class='move3 moves'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3 moves'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3 moves'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3 moves'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move3 moves'    id='move4'    onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
                                     <div class="createTriangle2 triangle"></div>
 
-                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move3'    id='move4'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 health'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 health'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 health'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 health'   id='hp4'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 health'   id='hp4'      onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
                                     <div class="createTriangle2 triangle"></div>
 
-                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='hp4'      onchange="fighterCost()"/>
-                                </td>
-
-                                <td>
-                                    <div class="createTriangle2 triangle"></div>
-
-                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other3'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 energy'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 energy'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 energy'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 energy'   id='nrg4'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other3 energy'   id='nrg4'     onchange="fighterCost()"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td><h3>Tier 3</h3></td>
                                 <td id="t3">
-                                    <input type='checkbox' class='ability2' id='ability3' onchange="fighterCost()"/>
-                                    <input type='checkbox' class='ability2' id='ability3' onchange="fighterCost()"/>
-                                    <input type='checkbox' class='ability2' id='ability3' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability2 ability' id='ability3' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability2 ability' id='ability3' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability2 ability' id='ability3' onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 attack'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 attack'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 attack'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 attack'   id='atk3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 attack'   id='atk3'     onchange="fighterCost()"/>
+                                </td>
+
+                                <td> 
+                                    <input type='checkbox' class='move2 moves'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move2 moves'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move2 moves'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move2 moves'    id='move3'    onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move2'    id='move3'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 health'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 health'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 health'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 health'   id='hp3'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 health'   id='hp3'      onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='hp3'      onchange="fighterCost()"/>
-                                </td>
-
-                                <td>
-                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other2'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 energy'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 energy'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 energy'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 energy'   id='nrg3'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other2 energy'   id='nrg3'     onchange="fighterCost()"/>
                                 </td>
                             </tr>
                             <tr>
                                 <td id="t2"><h3>Tier 2</h3></td>
                                 <td>
-                                    <input type='checkbox' class='ability1' id='ability2' onchange="fighterCost()"/>
-                                    <input type='checkbox' class='ability1' id='ability2' onchange="fighterCost()"/>
-                                    <input type='checkbox' class='ability1' id='ability2' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability1 ability' id='ability2' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability1 ability' id='ability2' onchange="fighterCost()"/>
+                                    <input type='checkbox' class='ability1 ability' id='ability2' onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='other1'   id='atk2'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other1'   id='atk2'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other1'   id='atk2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 attack'   id='atk2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 attack'   id='atk2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 attack'   id='atk2'     onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='move1'    id='move2'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move1'    id='move2'    onchange="fighterCost()"/>
-                                    <input type='checkbox' class='move1'    id='move2'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move1 moves'    id='move2'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move1 moves'    id='move2'    onchange="fighterCost()"/>
+                                    <input type='checkbox' class='move1 moves'    id='move2'    onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='other1'   id='hp2'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other1'   id='hp2'      onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other1'   id='hp2'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 health'   id='hp2'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 health'   id='hp2'      onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 health'   id='hp2'      onchange="fighterCost()"/>
                                 </td>
 
                                 <td>
-                                    <input type='checkbox' class='other1'   id='nrg2'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other1'   id='nrg2'     onchange="fighterCost()"/>
-                                    <input type='checkbox' class='other1'   id='nrg2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 energy'   id='nrg2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 energy'   id='nrg2'     onchange="fighterCost()"/>
+                                    <input type='checkbox' class='other1 energy'   id='nrg2'     onchange="fighterCost()"/>
                                 </td>
 
                             </tr>
@@ -198,15 +202,15 @@
                             <tr>
                                 <td id="t1"><h3>Tier 1</h3></td>
 
-                                <td><input type='checkbox' class='ability0' id='ability1' onchange="fighterCost()"/></td>
+                                <td><input type='checkbox' class='ability0 ability' id='ability1' onchange="fighterCost()"/></td>
 
-                                <td><input type='checkbox' class='other0'   id='ability1' onchange="fighterCost()"/></td>
+                                <td><input type='checkbox' class='other0 attack'   id='ability1' onchange="fighterCost()"/></td>
 
-                                <td><input type='checkbox' class='move0'    id='ability1' onchange="fighterCost()"/></td>
+                                <td><input type='checkbox' class='move0 moves'    id='ability1' onchange="fighterCost()"/></td>
 
-                                <td><input type='checkbox' class='other0'   id='ability1' onchange="fighterCost()"/></td>
+                                <td><input type='checkbox' class='other0 health'   id='ability1' onchange="fighterCost()"/></td>
 
-                                <td><input type='checkbox' class='other0'   id='ability1' onchange="fighterCost()"/></td>
+                                <td><input type='checkbox' class='other0 energy'   id='ability1' onchange="fighterCost()"/></td>
                             </tr>
                         </tbody>
                     </table>
